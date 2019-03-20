@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import CreateAuthors from '@/components/pages/authors/Create'
 import ListAuthors from '@/components/pages/authors/List'
+import ListBooks from '@/components/pages/books/List'
 import Main from '@/components/pages/Main'
 
 Vue.use(Router)
@@ -22,6 +23,11 @@ export default new Router({
       path: '/authors/list',
       name: 'ListAuthors',
       component: ListAuthors
+    },
+    {
+      path: '/books/list',
+      name: 'ListBooks',
+      component: ListBooks
     }
   ]
 })

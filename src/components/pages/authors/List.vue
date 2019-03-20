@@ -15,7 +15,7 @@ export default {
   methods: {
     loadData () {
       this.$store.dispatch('loadFromJSON', 'authors').then(() => {
-        // do stuff
+        console.log('loaded')
       })
     }
   },
@@ -24,7 +24,7 @@ export default {
       return this.$store.state.authors
     }
   },
-  created () {
+  mounted () {
     this.loadData()
   }
 }

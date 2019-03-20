@@ -1,13 +1,31 @@
 <template>
-  <Table></Table>
+  <div>
+    <Table :data="data"></Table>
+  </div>
+
 </template>
 
 <script>
-import Table from 'src/components/blocks/Table'
+import Table from '@/components/blocks/Table'
 export default {
   name: 'List',
   components: {
     Table
+  },
+  methods: {
+    loadData () {
+      this.$store.dispatch('loadFromJSON', 'books').then(() => {
+        console.log('loaded')
+      })
+    }
+  },
+  computed: {
+    data () {
+      return this.$store.state.books
+    }
+  },
+  mounted () {
+    this.loadData()
   }
 }
 </script>
