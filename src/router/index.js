@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Create from '@/components/pages/Create'
+import CreateAuthors from '@/components/pages/authors/Create'
+import ListAuthors from '@/components/pages/authors/List'
 import Main from '@/components/pages/Main'
 
 Vue.use(Router)
@@ -13,9 +14,14 @@ export default new Router({
       component: Main
     },
     {
-      path: '/create',
+      path: '/authors/create',
       name: 'Create',
-      component: Create
+      component: CreateAuthors
+    },
+    {
+      path: '/authors/list',
+      name: 'ListAuthors',
+      component: ListAuthors
     }
   ]
 })

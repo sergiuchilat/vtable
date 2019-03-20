@@ -1,0 +1,12 @@
+{
+  "authors": [
+    { "id": 1, "name": "Ion Creanga", "age": 85, "phone": "+37311111111"},
+    { "id": 2, "name": "Mihai Eminescu", "age": 120, "phone": "+37322222222"},
+    { "id": 3, "name": "Alecu Russo", "age": 125, "phone": "+37333333333"}
+  ],
+  "books": [
+  { "id": 1, "name": "Amintiri don copilarie", "author":  "Ion Creanga"},
+  { "id": 1, "name": "Poezii", "author":  "Mihai Eminescu"},
+  { "id": 1, "name": "Carte", "author":  "Alecu Russo"}
+]
+}

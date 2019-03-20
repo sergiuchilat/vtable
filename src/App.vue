@@ -4,11 +4,15 @@
     <b-container-fluid>
       <router-view/>
     </b-container-fluid>
+    <div>
+
+    </div>
   </div>
 </template>
 
 <script>
 import Menu from '@/components/blocks/Menu'
+
 export default {
   name: 'App',
   components: {
