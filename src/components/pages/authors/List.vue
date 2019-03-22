@@ -19,6 +19,12 @@ export default {
       })
     }
   },
+  beforeCreate () {
+    console.log('create cList')
+  },
+  beforeMount () {
+    console.log('mount cList')
+  },
   computed: {
     data () {
       return this.$store.state.authors
