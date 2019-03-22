@@ -45,6 +45,20 @@
 export default {
   data () {
     return {
+      breadcrumb: [
+        {
+          text: 'Home',
+          href: '#'
+        },
+        {
+          text: 'Authors',
+          href: '#/authors/list'
+        },
+        {
+          text: 'Create',
+          active: true
+        }
+      ],
       form: {
         email: '',
         name: '',
@@ -55,11 +69,8 @@ export default {
       show: true
     }
   },
-  beforeCreate () {
-    console.log('create cCreate')
-  },
-  beforeMount () {
-    console.log('mount cCreate')
+  mounted () {
+    this.initAction({breadcrumb: true})
   },
   methods: {
     onSubmit (evt) {

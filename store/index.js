@@ -5,13 +5,26 @@ Vue.use(Vuex)
 
 let store = new Vuex.Store({
   state: {
-    authors: [],
-    books: []
+    breadcrumb: [],
+    actionData: {
+      authors: [],
+      books: []
+    }
   },
   mutations: {
     setData (state, object) {
-      console.log(object.module)
-      state[object.module] = object.data
+      state.actionData[object.module] = object.data
+    },
+    setBreadcrumb (breadcrumb) {
+      this.state.breadcrumb = breadcrumb
+    }
+  },
+  getters: {
+    getActionData: state => (actionName) => {
+      return state.actionData[actionName]
+    },
+    getBreadcrumb () {
+      return this.state.breadcrumb
     }
   },
   actions: {
@@ -19,8 +32,6 @@ let store = new Vuex.Store({
       fetch('http://localhost:3000/' + module).then(response => {
         return response.json()
       }).then(data => {
-        // console.log(data)
-        // Work with JSON data here
         context.commit('setData', {'data': data, 'module': module})
       }).catch(err => {
         console.log('Load error' + err)

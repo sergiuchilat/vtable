@@ -1,20 +1,25 @@
 <template>
   <div id="app">
     <Menu></Menu>
+    <b-breadcrumb :items="breadcrumbItems" />
     <router-view/>
-    <div>
-
-    </div>
   </div>
 </template>
 
 <script>
 import Menu from '@/components/widgets/Menu'
+import Breadcrumb from '@/components/widgets/Breadcrumb'
 
 export default {
   name: 'App',
   components: {
-    Menu
+    Menu,
+    Breadcrumb
+  },
+  computed: {
+    breadcrumbItems () {
+      return this.$store.state.breadcrumb
+    }
   }
 }
 </script>

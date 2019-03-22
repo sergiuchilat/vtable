@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import Controller from '@/components/controllers/Controller'
+import Controller from '@/components/prototype/Controller'
 
 const listComponent = () => import('@/components/pages/authors/List')
 const createComponent = () => import('@/components/pages/authors/Create')

@@ -1,40 +1,36 @@
 <template>
   <div>
-    <Table :data="data" :tableHeaderText="tableHeaderText"></Table>
+    <Table :data="data"></Table>
   </div>
-
 </template>
 
 <script>
+import PrototypeAction from '@/components/prototype/ActionList'
 import Table from '@/components/widgets/Table'
 export default {
   name: 'List',
+  extends: PrototypeAction,
   components: {
     Table
   },
-  methods: {
-    loadData () {
-      this.$store.dispatch('loadFromJSON', 'authors').then(() => {
-        console.log('loaded')
-      })
+  data () {
+    return {
+      dataURL: 'authors',
+      breadcrumb: [
+        {
+          text: 'Home',
+          href: '#/'
+        },
+        {
+          text: 'Authors',
+          href: '#/authors/list'
+        },
+        {
+          text: 'List',
+          active: true
+        }
+      ]
     }
-  },
-  beforeCreate () {
-    console.log('create cList')
-  },
-  beforeMount () {
-    console.log('mount cList')
-  },
-  computed: {
-    data () {
-      return this.$store.state.authors
-    },
-    tableHeaderText () {
-      return 'Authors'
-    }
-  },
-  mounted () {
-    this.loadData()
   }
 }
 </script>

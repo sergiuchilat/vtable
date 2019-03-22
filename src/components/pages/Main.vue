@@ -7,9 +7,13 @@
 </template>
 
 <script>
+import PrototypeAction from '@/components/prototype/ActionList'
 export default {
+  extends: PrototypeAction,
   data () {
-    return {}
+    return {
+      breadcrumb: []
+    }
   }
 }
 </script>

@@ -1,34 +1,36 @@
 <template>
   <div>
-    <Table :data="data" :tableHeaderText="tableHeaderText"></Table>
+    <Table :data="data"></Table>
   </div>
-
 </template>
 
 <script>
+import PrototypeActionList from '@/components/prototype/ActionList'
 import Table from '@/components/widgets/Table'
 export default {
   name: 'List',
+  extends: PrototypeActionList,
   components: {
     Table
   },
-  methods: {
-    loadData () {
-      this.$store.dispatch('loadFromJSON', 'books').then(() => {
-        console.log('loaded')
-      })
+  data () {
+    return {
+      dataURL: 'books',
+      breadcrumb: [
+        {
+          text: 'Home',
+          href: '#/'
+        },
+        {
+          text: 'Books',
+          href: '#/books/list'
+        },
+        {
+          text: 'List',
+          active: true
+        }
+      ]
     }
-  },
-  computed: {
-    data () {
-      return this.$store.state.books
-    },
-    tableHeaderText () {
-      return 'Books'
-    }
-  },
-  mounted () {
-    this.loadData()
   }
 }
 </script>
