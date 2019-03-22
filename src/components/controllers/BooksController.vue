@@ -7,11 +7,11 @@
 <script>
 import Controller from '@/components/controllers/Controller'
 
-const listComponent = () => import('@/components/pages/authors/List')
-const createComponent = () => import('@/components/pages/authors/Create')
+const listComponent = () => import('@/components/pages/books/List')
+const createComponent = () => import('@/components/pages/books/Create')
 
 export default {
-  name: 'AuthorsController',
+  name: 'BooksController',
   extends: Controller,
   components: {
     listComponent,

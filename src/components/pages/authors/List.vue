@@ -1,12 +1,12 @@
 <template>
   <div>
-    <Table :data="data"></Table>
+    <Table :data="data" :tableHeaderText="tableHeaderText"></Table>
   </div>
 
 </template>
 
 <script>
-import Table from '@/components/blocks/Table'
+import Table from '@/components/widgets/Table'
 export default {
   name: 'List',
   components: {
@@ -28,6 +28,9 @@ export default {
   computed: {
     data () {
       return this.$store.state.authors
+    },
+    tableHeaderText () {
+      return 'Authors'
     }
   },
   mounted () {

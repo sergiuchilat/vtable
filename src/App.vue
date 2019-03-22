@@ -1,9 +1,7 @@
 <template>
   <div id="app">
     <Menu></Menu>
-    <b-container-fluid>
-      <router-view/>
-    </b-container-fluid>
+    <router-view/>
     <div>
 
     </div>
@@ -11,7 +9,7 @@
 </template>
 
 <script>
-import Menu from '@/components/blocks/Menu'
+import Menu from '@/components/widgets/Menu'
 
 export default {
   name: 'App',

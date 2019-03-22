@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>Table header</h1>
+    <h1>{{tableHeader}}</h1>
     <b-table striped hover :items="items" />
   </div>
 </template>
@@ -9,11 +9,15 @@
 
 export default {
   props: [
-    'data'
+    'data',
+    'tableHeaderText'
   ],
   computed: {
     items () {
       return this.data
+    },
+    tableHeader () {
+      return this.tableHeaderText
     }
   }
 }
