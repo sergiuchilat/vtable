@@ -42,7 +42,9 @@
 </template>
 
 <script>
+import PrototypeAction from '@/components/prototype/ActionCreate'
 export default {
+  extends: PrototypeAction,
   data () {
     return {
       form: {

@@ -15,7 +15,7 @@ let store = new Vuex.Store({
     setData (state, object) {
       state.actionData[object.module] = object.data
     },
-    setBreadcrumb (breadcrumb) {
+    setBreadcrumb (state, breadcrumb) {
       this.state.breadcrumb = breadcrumb
     }
   },
@@ -29,7 +29,7 @@ let store = new Vuex.Store({
   },
   actions: {
     loadFromJSON (context, module) {
-      fetch('http://localhost:3000/' + module).then(response => {
+      fetch(process.env.API_URL + module).then(response => {
         return response.json()
       }).then(data => {
         context.commit('setData', {'data': data, 'module': module})

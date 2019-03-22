@@ -6,13 +6,9 @@
 
 <script>
 import PrototypeAction from '@/components/prototype/ActionList'
-import Table from '@/components/widgets/Table'
 export default {
   name: 'List',
   extends: PrototypeAction,
-  components: {
-    Table
-  },
   data () {
     return {
       dataURL: 'authors',

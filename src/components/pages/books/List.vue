@@ -6,13 +6,9 @@
 
 <script>
 import PrototypeActionList from '@/components/prototype/ActionList'
-import Table from '@/components/widgets/Table'
 export default {
   name: 'List',
   extends: PrototypeActionList,
-  components: {
-    Table
-  },
   data () {
     return {
       dataURL: 'books',

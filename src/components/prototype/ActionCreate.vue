@@ -3,11 +3,9 @@
 </template>
 
 <script>
-import Table from '@/components/widgets/Table'
 export default {
-  name: 'ActionList',
+  name: 'ActionCreate',
   components: {
-    Table
   },
   methods: {
     initAction (params) {
@@ -20,16 +18,6 @@ export default {
     },
     loadBreadcrumbs () {
       this.$store.commit('setBreadcrumb', this.breadcrumb)
-    },
-    loadData (dataURL) {
-      this.$store.dispatch('loadFromJSON', dataURL).then(() => {
-        console.log('loaded')
-      })
-    }
-  },
-  computed: {
-    data () {
-      return this.$store.getters.getActionData(this.dataURL)
     }
   },
   mounted () {

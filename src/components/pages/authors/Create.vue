@@ -42,7 +42,9 @@
 </template>
 
 <script>
+import PrototypeAction from '@/components/prototype/ActionCreate'
 export default {
+  extends: PrototypeAction,
   data () {
     return {
       breadcrumb: [
@@ -68,9 +70,6 @@ export default {
       foods: [{ text: 'Select One', value: null }, 'Carrots', 'Beans', 'Tomatoes', 'Corn'],
       show: true
     }
-  },
-  mounted () {
-    this.initAction({breadcrumb: true})
   },
   methods: {
     onSubmit (evt) {
