@@ -4,8 +4,10 @@
 
 <script>
 import Table from '@/components/widgets/Table'
+import Action from '@/components/prototype/Action'
 export default {
   name: 'ActionList',
+  extends: Action,
   components: {
     Table
   },
@@ -18,9 +20,6 @@ export default {
         this.loadBreadcrumbs()
       }
     },
-    loadBreadcrumbs () {
-      this.$store.commit('setBreadcrumb', this.breadcrumb)
-    },
     loadData (dataURL) {
       this.$store.dispatch('loadFromJSON', dataURL).then(() => {
         console.log('loaded')
@@ -28,7 +27,7 @@ export default {
     }
   },
   computed: {
-    data () {
+    items () {
       return this.$store.getters.getActionData(this.dataURL)
     }
   },

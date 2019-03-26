@@ -2,7 +2,7 @@
   <div>
     <b-navbar type="dark" variant="dark">
       <b-navbar-nav>
-        <b-nav-item href="#/">Home</b-nav-item>
+        <b-nav-item href="#/">{{$t('homeLinkText')}}</b-nav-item>
 
         <!-- Navbar dropdowns -->
         <b-nav-item-dropdown text="Authors" right>

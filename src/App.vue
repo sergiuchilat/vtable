@@ -1,6 +1,7 @@
 <template>
   <div id="app">
     <Menu></Menu>
+    <lang-switcher></lang-switcher>
     <b-breadcrumb :items="breadcrumbItems" />
     <router-view/>
   </div>
@@ -9,12 +10,14 @@
 <script>
 import Menu from '@/components/widgets/Menu'
 import Breadcrumb from '@/components/widgets/Breadcrumb'
+import LangSwitcher from '@/components/widgets/LangSwitcher'
 
 export default {
   name: 'App',
   components: {
     Menu,
-    Breadcrumb
+    Breadcrumb,
+    LangSwitcher
   },
   computed: {
     breadcrumbItems () {
