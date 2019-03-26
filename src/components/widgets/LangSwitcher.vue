@@ -18,11 +18,23 @@ export default {
       ]
     }
   },
+  methods: {
+    loadLanguage (lang) {
+      import('../../../static/translations/' + lang).then(messages => {
+        i18n.setLocaleMessage(lang, messages.default)
+      })
+    }
+  },
   watch: {
-    selected: (locale) => {
+    selected: function (locale) {
       i18n.locale = locale
       localStorage.appLang = locale
+      this.loadLanguage(locale)
+      document.location.reload()
     }
+  },
+  created () {
+    this.loadLanguage(i18n.locale)
   }
 }
 </script>

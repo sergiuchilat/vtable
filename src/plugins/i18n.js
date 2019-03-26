@@ -1,15 +1,12 @@
 import Vue from 'vue'
 import VueI18n from 'vue-i18n'
-import localesEN from '../../static/translations/en'
+/* import localesEN from '../../static/translations/en'
 import localesRO from '../../static/translations/ro'
-import localesRU from '../../static/translations/ru'
+import localesRU from '../../static/translations/ru' */
 
 Vue.use(VueI18n)
 
 const messages = {
-  'ru': localesRU,
-  'ro': localesRO,
-  'en': localesEN
 }
 
 const i18n = new VueI18n({

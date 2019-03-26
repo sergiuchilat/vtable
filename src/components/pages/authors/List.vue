@@ -14,7 +14,7 @@ export default {
       dataURL: 'authors',
       breadcrumb: [
         {
-          text: 'Home',
+          text: this.$t('homeLinkText'),
           href: '#/'
         },
         {

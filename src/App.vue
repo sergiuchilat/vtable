@@ -1,7 +1,7 @@
 <template>
   <div id="app">
-    <Menu></Menu>
     <lang-switcher></lang-switcher>
+    <Menu></Menu>
     <b-breadcrumb :items="breadcrumbItems" />
     <router-view/>
   </div>
