@@ -21,8 +21,7 @@ export default {
       }
     },
     loadData (dataURL) {
-      this.$store.dispatch('loadFromJSON', dataURL).then(() => {
-        console.log('loaded')
+      this.$store.dispatch('fetchData', dataURL).then(() => {
       })
     }
   },

@@ -33,7 +33,7 @@ let store = new Vuex.Store({
     }
   },
   actions: {
-    loadFromJSON (context, module) {
+    fetchData (context, module) {
       // process.env.API_URL + module
       store.state.dataLoaded = false
       setTimeout(function () {
@@ -41,7 +41,7 @@ let store = new Vuex.Store({
       }, 100)
 
       context.commit('setData', {'data': [], 'module': module})
-      fetch(process.env.API_URL + 'db.php?module=' + module).then(response => {
+      fetch(process.env.API_URL + 'db.php?module=' + module, {}).then(response => {
         return response.json()
       }).then(data => {
         store.state.dataLoaded = true
