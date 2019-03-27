@@ -3,8 +3,8 @@
         <page-loader></page-loader>
         <lang-switcher></lang-switcher>
         <Menu></Menu>
-        <b-breadcrumb :items="breadcrumbItems" />
-        <router-view/>
+        <b-breadcrumb :key = "upBreadCrumb" :items="breadcrumbItems" />
+        <router-view :key = "upRouter"> </router-view>
     </div>
 </template>
 
@@ -23,12 +23,21 @@ export default {
   },
   data () {
     return {
-      vr: 1
+      upBreadCrumb: 1,
+      upRouter: 2
     }
   },
   computed: {
     breadcrumbItems () {
       return this.$store.getters.getBreadcrumb
+    }
+  },
+  methods: {
+    updateRouter () {
+      setTimeout(() => {
+        this.upRouter++
+      }, 100)
+      this.upBreadCrumb++
     }
   }
 }

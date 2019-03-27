@@ -30,6 +30,7 @@ export default {
       i18n.locale = locale
       localStorage.appLang = locale
       this.loadLanguage(locale)
+      this.$parent.updateRouter()
     }
   },
   created () {

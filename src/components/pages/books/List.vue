@@ -14,7 +14,7 @@ export default {
       dataURL: 'books',
       breadcrumb: [
         {
-          text: 'Home',
+          text: this.$t('homeLinkText'),
           href: '#/'
         },
         {
