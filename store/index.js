@@ -5,6 +5,8 @@ Vue.use(Vuex)
 
 let store = new Vuex.Store({
   state: {
+    dataLoaded: false,
+    pageLoading: false,
     breadcrumb: [],
     actionData: {
       authors: [],
@@ -20,6 +22,9 @@ let store = new Vuex.Store({
     }
   },
   getters: {
+    getPageLoading: state => {
+      return state.pageLoading
+    },
     getActionData: state => (actionName) => {
       return state.actionData[actionName]
     },
@@ -29,9 +34,18 @@ let store = new Vuex.Store({
   },
   actions: {
     loadFromJSON (context, module) {
-      fetch(process.env.API_URL + module).then(response => {
+      // process.env.API_URL + module
+      store.state.dataLoaded = false
+      setTimeout(function () {
+        store.state.pageLoading = !store.state.dataLoaded
+      }, 100)
+
+      context.commit('setData', {'data': [], 'module': module})
+      fetch(process.env.API_URL + 'db.php?module=' + module).then(response => {
         return response.json()
       }).then(data => {
+        store.state.dataLoaded = true
+        store.state.pageLoading = false
         context.commit('setData', {'data': data, 'module': module})
       }).catch(err => {
         console.log('Load error' + err)
