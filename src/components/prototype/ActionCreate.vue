@@ -3,8 +3,11 @@
 </template>
 
 <script>
+import Action from '@/components/prototype/Action'
+
 export default {
   name: 'ActionCreate',
+  extends: Action,
   components: {
   },
   methods: {
@@ -15,9 +18,6 @@ export default {
       if (params.breadcrumb) {
         this.loadBreadcrumbs()
       }
-    },
-    loadBreadcrumbs () {
-      this.$store.commit('setBreadcrumb', this.breadcrumb)
     }
   },
   mounted () {

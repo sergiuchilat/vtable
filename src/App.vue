@@ -3,7 +3,7 @@
         <page-loader></page-loader>
         <lang-switcher></lang-switcher>
         <Menu></Menu>
-        <b-breadcrumb :key="vr" :items="breadcrumbItems" />
+        <b-breadcrumb :items="breadcrumbItems" />
         <router-view/>
     </div>
 </template>
