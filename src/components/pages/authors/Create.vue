@@ -1,56 +1,17 @@
-<template>
-  <div>
-    <b-form @submit="onSubmit" @reset="onReset" v-if="show">
-      <b-form-group
-        id="exampleInputGroup1"
-        label="Email address:"
-        label-for="exampleInput1"
-        description="We'll never share your email with anyone else."
-      >
-        <b-form-input
-          id="exampleInput1"
-          type="email"
-          v-model="form.email"
-          required
-          placeholder="Enter email" />
-      </b-form-group>
-
-      <b-form-group id="exampleInputGroup2" label="Your Name:" label-for="exampleInput2">
-        <b-form-input
-          id="exampleInput2"
-          type="text"
-          v-model="form.name"
-          required
-          placeholder="Enter name" />
-      </b-form-group>
-
-      <b-form-group id="exampleInputGroup3" label="Food:" label-for="exampleInput3">
-        <b-form-select id="exampleInput3" :options="foods" required v-model="form.food" />
-      </b-form-group>
-
-      <b-form-group id="exampleGroup4">
-        <b-form-checkbox-group v-model="form.checked" id="exampleChecks">
-          <b-form-checkbox value="me">Check me out</b-form-checkbox>
-          <b-form-checkbox value="that">Check that out</b-form-checkbox>
-        </b-form-checkbox-group>
-      </b-form-group>
-
-      <b-button type="submit" variant="primary">Submit</b-button>
-      <b-button type="reset" variant="danger">Reset</b-button>
-    </b-form>
-  </div>
-</template>
 
 <script>
+import { required, minLength, alphaNum, maxLength, integer } from 'vuelidate/lib/validators'
 import PrototypeAction from '@/components/prototype/ActionCreate'
+
 export default {
   extends: PrototypeAction,
   data () {
     return {
+      dataURL: 'authors',
       breadcrumb: [
         {
           text: 'Home',
-          href: '#'
+          href: '#/'
         },
         {
           text: 'Authors',
@@ -62,33 +23,108 @@ export default {
         }
       ],
       form: {
-        email: '',
         name: '',
-        food: null,
-        checked: []
-      },
-      foods: [{ text: 'Select One', value: null }, 'Carrots', 'Beans', 'Tomatoes', 'Corn'],
-      show: true
+        age: '',
+        phone: ''
+      }
     }
   },
-  methods: {
-    onSubmit (evt) {
-      evt.preventDefault()
-      alert(JSON.stringify(this.form))
-    },
-    onReset (evt) {
-      evt.preventDefault()
-      /* Reset our form values */
-      this.form.email = ''
-      this.form.name = ''
-      this.form.food = null
-      this.form.checked = []
-      /* Trick to reset/clear native browser form validation state */
-      this.show = false
-      this.$nextTick(() => {
-        this.show = true
-      })
+  validations: {
+    form: {
+      name: {
+        required,
+        minLength: minLength(5),
+        alphaNum
+      },
+      age: {
+        required,
+        minLength: minLength(1),
+        integer
+      },
+      phone: {
+        required,
+        minLength: minLength(11),
+        maxLength: maxLength(11),
+        integer
+      }
     }
   }
 }
 </script>
+
+<template>
+    <div class="row justify-content-center">
+        <form class="col-5">
+            <div class="form-group">
+                <div class="text-center">
+                    <label for='name'>Author name:</label>
+                    <input
+                        placeholder="Enter name"
+                        type="text"
+                        id="name"
+                        class="form-control"
+                        :class="$v.form.name.$error ? {'is-invalid' : $v.form.name.$error} : {'is-valid' : !$v.form.name.$invalid}"
+                        @blur="$v.form.name.$touch()"
+                        v-model.trim="$v.form.name.$model"
+                    >
+                    <div class="invalid-feedback" v-if="!$v.form.name.minLength">Alert! Min length</div>
+                    <div class="invalid-feedback" v-if="!$v.form.name.alphaNum">Alert! Alpha num</div>
+                    <div class="invalid-feedback" v-if="!$v.form.name.required">Alert! Required</div>
+                </div>
+                <div class="text-center pt-3">
+                    <label for="age">Author age:</label>
+                    <input
+                        placeholder="Enter age"
+                        type="text"
+                        id="age"
+                        class="form-control"
+                        :class="$v.form.age.$error ? {'is-invalid' : $v.form.age.$error} : {'is-valid' : !$v.form.age.$invalid}"
+                        @blur="$v.form.age.$touch()"
+                        v-model.trim="$v.form.age.$model"
+                    >
+                    <div class="invalid-feedback" v-if="!$v.form.age.integer">Alert! Integer</div>
+                    <div class="invalid-feedback" v-if="!$v.form.age.minLength">Alert! Min length</div>
+                    <div class="invalid-feedback" v-if="!$v.form.age.required">Alert! Required</div>
+                </div>
+                <div class="text-center pt-3">
+                    <label for="age">Author phone:</label>
+                    <input
+                    placeholder="Enter phone"
+                    type="text"
+                    id="phone"
+                    class="form-control"
+                    :class="$v.form.phone.$error ? {'is-invalid' : $v.form.phone.$error} : {'is-valid' : !$v.form.phone.$invalid}"
+                    @blur="$v.form.phone.$touch()"
+                    v-model.trim="$v.form.phone.$model"
+                >
+                    <div class="invalid-feedback" v-if="!$v.form.phone.minLength">Alert! Min length</div>
+                    <div class="invalid-feedback" v-if="!$v.form.phone.maxLength">Alert! Max length</div>
+                    <div class="invalid-feedback" v-if="!$v.form.phone.required">Alert! Required</div>
+                    <div class="invalid-feedback" v-if="!$v.form.phone.integer">Alert! Integer</div>
+                </div>
+                <b-button
+                    v-if="!$v.form.name.$invalid && !$v.form.age.$invalid && !$v.form.phone.$invalid "
+                    class="mt-4 col-3"
+                    variant="success"
+                    @click="onSubmit"
+                >
+                    Submit
+                </b-button>
+                <b-button
+                    v-else
+                    class="mt-4 col-3"
+                    variant="success"
+                    disabled
+                >
+                    Submit
+                </b-button>
+            </div>
+        </form>
+    </div>
+</template>
+
+<style>
+    .row {
+        margin-right: 0;
+    }
+</style>

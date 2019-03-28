@@ -1,7 +1,7 @@
 <template>
   <div>
       <transition name="fade">
-          <div v-show="isLoading" class="loadingOverlay">
+          <div v-if="isLoading" class="loadingOverlay">
               <div class="bSpiner" >
                   <b-spinner  type="grow" label="Small Spinner"/>
               </div>

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <b-form @submit="onSubmit" @reset="onReset" v-if="show">
+    <b-form  @reset="onReset" v-if="show">
       <b-form-group
         id="exampleInputGroup1"
         label="Email address:"
@@ -72,10 +72,6 @@ export default {
     }
   },
   methods: {
-    onSubmit (evt) {
-      evt.preventDefault()
-      alert(JSON.stringify(this.form))
-    },
     onReset (evt) {
       evt.preventDefault()
       /* Reset our form values */

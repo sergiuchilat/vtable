@@ -24,7 +24,7 @@ export default {
   data () {
     return {
       upBreadCrumb: 1,
-      upRouter: 2
+      upRouter: 3
     }
   },
   computed: {

@@ -33,6 +33,9 @@ let store = new Vuex.Store({
     }
   },
   actions: {
+    updateData (context, payload) {
+      console.log(payload)
+    },
     loadFromJSON (context, module) {
       // process.env.API_URL + module
       store.state.dataLoaded = false

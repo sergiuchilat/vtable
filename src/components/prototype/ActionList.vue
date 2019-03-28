@@ -13,12 +13,8 @@ export default {
   },
   methods: {
     initAction (params) {
-      if (params.dataURL) {
-        this.loadData(params.dataURL)
-      }
-      if (params.breadcrumb) {
-        this.loadBreadcrumbs()
-      }
+      (params.dataURL) && this.loadData(params.dataURL);
+      (params.breadcrumb) && this.loadBreadcrumbs()
     },
     loadData (dataURL) {
       this.$store.dispatch('loadFromJSON', dataURL).then(() => {
