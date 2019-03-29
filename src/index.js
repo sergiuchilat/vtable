@@ -9,11 +9,13 @@ import BootstrapVue from 'bootstrap-vue'
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 import i18n from '@/plugins/i18n'
+import Vuelidate from 'vuelidate'
 // import vuexI18n from 'vuex-i18n'
 // import translator from '@plugins/translator'
 
 Vue.use(Vuex)
 Vue.use(BootstrapVue)
+Vue.use(Vuelidate)
 // Vue.use(vuexI18n.plugin, store)
 Vue.config.productionTip = false
 

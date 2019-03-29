@@ -18,21 +18,24 @@ let store = new Vuex.Store({
       state.actionData[object.module] = object.data
     },
     setBreadcrumb (state, breadcrumb) {
-      this.state.breadcrumb = breadcrumb
+      state.breadcrumb = breadcrumb
     }
   },
   getters: {
     getPageLoading: state => {
       return state.pageLoading
     },
-    getActionData: state => (actionName) => {
+    getActionData: state => actionName => {
       return state.actionData[actionName]
     },
-    getBreadcrumb () {
-      return this.state.breadcrumb
+    getBreadcrumb: state => {
+      return state.breadcrumb
     }
   },
   actions: {
+    updateData (context, payload) {
+      console.log(payload)
+    },
     fetchData (context, module) {
       // process.env.API_URL + module
       store.state.dataLoaded = false
@@ -41,11 +44,13 @@ let store = new Vuex.Store({
       }, 100)
 
       context.commit('setData', {'data': [], 'module': module})
-      fetch(process.env.API_URL + 'db.php?module=' + module, {}).then(response => {
+      fetch(process.env.API_URL + module).then(response => {
         return response.json()
       }).then(data => {
-        store.state.dataLoaded = true
-        store.state.pageLoading = false
+        setTimeout(function () {
+          store.state.dataLoaded = false
+          store.state.pageLoading = false
+        }, 1000)
         context.commit('setData', {'data': data, 'module': module})
       }).catch(err => {
         console.log('Load error' + err)

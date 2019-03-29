@@ -12,19 +12,26 @@ export default {
   },
   methods: {
     initAction (params) {
-      if (params.dataURL) {
-        this.loadData(params.dataURL)
+      this.$store.dispatch('updateData', params).then(() => {
+        console.log('updated')
+        this.resetForm()
+      })
+    },
+    onSubmit () {
+      this.initAction({
+        dataURL: this.dataURL,
+        data: this.form
+      })
+    },
+    resetForm () {
+      for (let key in this.form) {
+        this.form[key] = ''
       }
-      if (params.breadcrumb) {
-        this.loadBreadcrumbs()
-      }
+      this.$v.$reset()
     }
   },
   mounted () {
-    this.initAction({
-      dataURL: this.dataURL,
-      breadcrumb: true
-    })
+    this.loadBreadcrumbs()
   }
 }
 </script>
