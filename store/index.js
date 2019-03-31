@@ -19,9 +19,6 @@ let store = new Vuex.Store({
     },
     setBreadcrumb (state, breadcrumb) {
       state.breadcrumb = breadcrumb
-    },
-    setLoadData (state) {
-      state.dataLoaded = true
     }
   },
   getters: {
@@ -45,11 +42,7 @@ let store = new Vuex.Store({
         fetch(process.env.API_URL + payload.dataURL, {
           headers: {'Content-Type': 'application/json; charset=utf-8'},
           method: 'POST',
-          body: JSON.stringify({
-            name: payload.data.name,
-            age: payload.data.age,
-            phone: payload.data.phone
-          })
+          body: JSON.stringify(payload.data)
         })
           .then(response => {
             setTimeout(() => {
