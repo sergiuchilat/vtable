@@ -8,6 +8,7 @@
 import i18n from '@/plugins/i18n'
 export default {
   name: 'LangSwitcher',
+  props: ['updateRouter'],
   data () {
     return {
       selected: i18n.locale,
@@ -30,7 +31,7 @@ export default {
       i18n.locale = locale
       localStorage.appLang = locale
       this.loadLanguage(locale)
-      this.$parent.updateRouter()
+      this.updateRouter()
     }
   },
   created () {

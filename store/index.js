@@ -19,6 +19,9 @@ let store = new Vuex.Store({
     },
     setBreadcrumb (state, breadcrumb) {
       state.breadcrumb = breadcrumb
+    },
+    setLoadData (state) {
+      state.dataLoaded = true
     }
   },
   getters: {
@@ -34,7 +37,28 @@ let store = new Vuex.Store({
   },
   actions: {
     updateData (context, payload) {
-      console.log(payload)
+      store.state.dataLoaded = false
+      setTimeout(function () {
+        store.state.pageLoading = !store.state.dataLoaded
+      }, 100)
+      return new Promise(resolve => {
+        fetch(process.env.API_URL + payload.dataURL, {
+          headers: {'Content-Type': 'application/json; charset=utf-8'},
+          method: 'POST',
+          body: JSON.stringify({
+            name: payload.data.name,
+            age: payload.data.age,
+            phone: payload.data.phone
+          })
+        })
+          .then(response => {
+            setTimeout(() => {
+              store.state.dataLoaded = true
+              store.state.pageLoading = false
+              resolve(response.ok)
+            }, 1000)
+          })
+      })
     },
     loadFromJSON (context, module) {
       // process.env.API_URL + module
@@ -47,10 +71,8 @@ let store = new Vuex.Store({
       fetch(process.env.API_URL + module).then(response => {
         return response.json()
       }).then(data => {
-        setTimeout(function () {
-          store.state.dataLoaded = false
-          store.state.pageLoading = false
-        }, 1000)
+        store.state.dataLoaded = true
+        store.state.pageLoading = false
         context.commit('setData', {'data': data, 'module': module})
       }).catch(err => {
         console.log('Load error' + err)
