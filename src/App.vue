@@ -1,10 +1,10 @@
 <template>
     <div id="app">
-        <page-loader></page-loader>
-        <lang-switcher></lang-switcher>
-        <Menu></Menu>
+        <page-loader />
+        <lang-switcher :updateRouter = "updateRouter" />
+        <Menu />
         <b-breadcrumb :key = "upBreadCrumb" :items="breadcrumbItems" />
-        <router-view :key = "upRouter"> </router-view>
+        <router-view :key = "upRouter" />
     </div>
 </template>
 
