@@ -1,4 +1,4 @@
-import Main from '@/components/pages/Main'
+import Main from '@/components/actions/Main'
 
 export default [
   {

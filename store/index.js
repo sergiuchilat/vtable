@@ -8,6 +8,7 @@ let store = new Vuex.Store({
     dataLoaded: false,
     pageLoading: false,
     breadcrumb: [],
+
     actionData: {
       authors: [],
       books: []
@@ -15,6 +16,7 @@ let store = new Vuex.Store({
   },
   mutations: {
     setData (state, object) {
+      // console.log(object.data)
       state.actionData[object.module] = object.data
     },
     setBreadcrumb (state, breadcrumb) {
@@ -66,9 +68,13 @@ let store = new Vuex.Store({
       }).then(data => {
         store.state.dataLoaded = true
         store.state.pageLoading = false
-        context.commit('setData', {'data': data, 'module': module})
+        console.log('>>', data, '<<')
+        context.commit('setData', {'data': {items: data, fetchError: ''}, 'module': module})
       }).catch(err => {
         console.log('Load error' + err)
+        store.state.dataLoaded = true
+        store.state.pageLoading = false
+        context.commit('setData', {'data': {items: [], fetchError: 'FETCH_FAILED'}, 'module': module})
       })
     }
   }

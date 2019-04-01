@@ -1,16 +1,12 @@
-{
-  "books": [
-    {
+{"books" : [{
       "id": 1,
       "name": "Amintiri don copilarie",
       "author": "Ion Creanga"
-    },
-    {
+    },{
       "id": 1,
       "name": "Poezii",
       "author": "Mihai Eminescu"
-    },
-    {
+    },{
       "id": 1,
       "name": "Carte",
       "author": "Alecu Russo"

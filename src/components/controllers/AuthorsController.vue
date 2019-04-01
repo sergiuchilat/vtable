@@ -7,8 +7,8 @@
 <script>
 import Controller from '@/components/prototype/Controller'
 
-const listComponent = () => import('@/components/pages/authors/List')
-const createComponent = () => import('@/components/pages/authors/Create')
+const listComponent = () => import('@/components/actions/authors/List')
+const createComponent = () => import('@/components/actions/authors/Create')
 
 export default {
   name: 'AuthorsController',

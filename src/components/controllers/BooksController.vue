@@ -7,8 +7,8 @@
 <script>
 import Controller from '@/components/prototype/Controller'
 
-const listComponent = () => import('@/components/pages/books/List')
-const createComponent = () => import('@/components/pages/books/Create')
+const listComponent = () => import('@/components/actions/books/List')
+const createComponent = () => import('@/components/actions/books/Create')
 
 export default {
   name: 'BooksController',

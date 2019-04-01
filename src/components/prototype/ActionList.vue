@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import Table from '@/components/widgets/Table'
+import Table from '@/components/widgets/DataTable'
 import Action from '@/components/prototype/Action'
 export default {
   name: 'ActionList',
@@ -23,7 +23,12 @@ export default {
   },
   computed: {
     items () {
-      return this.$store.getters.getActionData(this.dataURL)
+      let data = this.$store.getters.getActionData(this.dataURL)
+      return data.items || []
+    },
+    fetchError () {
+      let data = this.$store.getters.getActionData(this.dataURL)
+      return data.fetchError || ''
     }
   },
   mounted () {
