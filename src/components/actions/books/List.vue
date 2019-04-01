@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Table :items="items"></Table>
+    <Table :items="items" :fetchError="fetchError"></Table>
   </div>
 </template>
 
