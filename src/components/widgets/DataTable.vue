@@ -62,7 +62,7 @@ export default {
     }
   },
   created () {
-    this.currentPage = this.$route.params.page
+    this.currentPage = this.$route.params.page || 1
   }
 }
 </script>
