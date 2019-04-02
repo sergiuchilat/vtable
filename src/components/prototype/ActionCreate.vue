@@ -28,20 +28,20 @@ export default {
           if (response) {
             this.toggleForm('hide')
             this.resultStatus = {
-              label: 'E:SUCCESS:CREATE',
+              label: 'success.create',
               class: 'success'
             }
           } else {
             this.toggleForm('show')
             this.resultStatus = {
-              label: 'E:SERVER_ERROR',
+              label: 'errors.create',
               class: 'danger'
             }
           }
         })
         .catch(() => {
           this.resultStatus = {
-            label: 'E:SERVER_ERROR',
+            label: 'errors.server',
             class: 'danger'
           }
         })
@@ -51,7 +51,9 @@ export default {
     },
     resetForm () {
       for (let key in this.form) {
-        this.form[key] = ''
+        if (this.form.hasOwnProperty(key)) {
+          this.form[key] = ''
+        }
       }
       this.$v.$reset()
       this.toggleForm('show')

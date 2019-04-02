@@ -10,6 +10,12 @@ export default {
     }
   },
   responseMessages: {
-    'E:SUCCESS:CREATE': 'Successfully added'
+    errors: {
+      server: 'Server error',
+      create: 'Add error'
+    },
+    success: {
+      create: 'Successfully added'
+    }
   }
 }
