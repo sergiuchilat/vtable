@@ -1,19 +1,14 @@
 <template>
   <div>
     <b-pagination-nav
-      :number-of-pages="totalPages"
+      :number-of-pages="totalPages || 1"
       base-url="#/authors/list/"
       aria-controls="vDataTable"
       :total-rows="totalRows"
       :per-page="perPage"
       v-model="currentPage"
     ></b-pagination-nav>
-    <b-pagination
-      v-model="currentPage"
-      :total-rows="totalRows"
-      :per-page="perPage"
-      aria-controls="vDataTable"
-    ></b-pagination>
+
     <b-form-select
       id="input-3"
       v-model="perPage"
@@ -63,11 +58,10 @@ export default {
       return this.items.length
     },
     totalPages () {
-      console.log(Math.ceil(this.totalRows / this.perPage))
       return Math.ceil(this.totalRows / this.perPage)
     }
   },
-  mounted () {
+  created () {
     this.currentPage = this.$route.params.page
   }
 }
