@@ -28,7 +28,7 @@ export default {
         },
         {
           text: this.$t('modules.' + this.moduleName + '.moduleName'),
-          href: '#/authors/list'
+          href: '#/' + this.moduleName.toLowerCase() + '/list'
         },
         {
           text: this.$t('modules.' + this.moduleName + '.actions.' + this.actionName.toLowerCase()),
