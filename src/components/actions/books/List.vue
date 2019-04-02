@@ -1,6 +1,8 @@
 <template>
   <div>
-    <Table :items="items" :responseError="responseError"></Table>
+    <b-button href="#/books/create" variant="success">New</b-button>
+    <b-alert show :variant="resultStatus.class" v-if="resultStatus.label!==''">{{resultStatus.label}}</b-alert>
+    <Table :items="items" :fields="tableFields" :sortBy="sortBy" :sortDesc="sortDesc"></Table>
   </div>
 </template>
 
@@ -12,19 +14,12 @@ export default {
   data () {
     return {
       dataURL: 'books',
-      breadcrumb: [
-        {
-          text: this.$t('homeLinkText'),
-          href: '#/'
-        },
-        {
-          text: 'Books',
-          href: '#/books/list'
-        },
-        {
-          text: 'List',
-          active: true
-        }
+      sortBy: 'name',
+      sortDesc: false,
+      tableFields: [
+        {key: 'id', sortable: true},
+        {key: 'name', sortable: true},
+        {key: 'author', sortable: true}
       ]
     }
   }

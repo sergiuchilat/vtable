@@ -1,6 +1,6 @@
 <template>
   <div>
-    <component :is="actionLoader"></component>
+    <component :is="actionLoader" :moduleName="'authors'" :actionName="actionName"></component>
   </div>
 </template>
 

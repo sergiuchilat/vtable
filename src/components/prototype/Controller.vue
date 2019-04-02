@@ -11,6 +11,9 @@ export default {
   computed: {
     actionLoader () {
       return this.$route.params.action + 'Component'
+    },
+    actionName () {
+      return this.$route.params.action.toLowerCase()
     }
   }
 }

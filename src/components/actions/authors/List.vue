@@ -1,7 +1,8 @@
 <template>
   <div>
+    <b-button href="#/authors/create" variant="success">New</b-button>
     <b-alert show :variant="resultStatus.class" v-if="resultStatus.label!==''">{{resultStatus.label}}</b-alert>
-    <Table v-else :items="items"></Table>
+    <Table v-else :items="items" :fields="tableFields" :sortBy="sortBy" :sortDesc="sortDesc"></Table>
   </div>
 </template>
 
@@ -13,19 +14,13 @@ export default {
   data () {
     return {
       dataURL: 'authors',
-      breadcrumb: [
-        {
-          text: this.$t('homeLinkText'),
-          href: '#/'
-        },
-        {
-          text: 'Authors',
-          href: '#/authors/list'
-        },
-        {
-          text: 'List',
-          active: true
-        }
+      sortBy: 'name',
+      sortDesc: false,
+      tableFields: [
+        {key: 'id', sortable: true},
+        {key: 'name', sortable: true},
+        {key: 'age', sortable: true},
+        {key: 'phone', sortable: true}
       ]
     }
   }

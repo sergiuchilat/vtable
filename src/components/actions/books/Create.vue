@@ -47,20 +47,6 @@ export default {
   extends: PrototypeAction,
   data () {
     return {
-      breadcrumb: [
-        {
-          text: 'Home',
-          href: '#'
-        },
-        {
-          text: 'Books',
-          href: '#/books/list'
-        },
-        {
-          text: 'Create',
-          active: true
-        }
-      ],
       form: {
         email: '',
         name: '',

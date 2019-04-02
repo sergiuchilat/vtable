@@ -1,11 +1,19 @@
 export default {
   'content': 'This is some {type} content',
   homeLinkText: 'HOME',
-  actions: {
+  modules: {
     authors: {
       moduleName: 'Authors',
-      breadcrumb: {
-
+      actions: {
+        'list': 'List',
+        'create': 'Create'
+      }
+    },
+    books: {
+      moduleName: 'Books',
+      actions: {
+        'list': 'List',
+        'create': 'Create'
       }
     }
   },

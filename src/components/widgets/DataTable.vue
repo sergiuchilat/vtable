@@ -2,7 +2,7 @@
   <div>
     <b-pagination
       v-model="currentPage"
-      :total-rows="rows"
+      :total-rows="totalRows"
       :per-page="perPage"
       aria-controls="vDataTable"
     ></b-pagination>
@@ -12,11 +12,16 @@
       :options="perPageOptions"
       required
     ></b-form-select>
-    <b-table striped hover
-             :items="items"
-             :per-page="perPage"
-             :current-page="currentPage"
-             id="vDataTable"/>
+    <b-table
+      striped
+      hover
+      :items="items"
+      :per-page="perPage"
+      :current-page="currentPage"
+      :fields="fields"
+      :sort-by.sync="sortBy"
+      :sort-desc.sync="sortDesc"
+      id="vDataTable"/>
   </div>
 </template>
 
@@ -24,6 +29,9 @@
 
 export default {
   props: {
+    fields: {
+      required: true
+    },
     items: {
       type: Array,
       required: true
@@ -35,13 +43,15 @@ export default {
   },
   data () {
     return {
+      sortBy: 'name',
+      sortDesc: false,
       perPage: 5,
       currentPage: 1,
       perPageOptions: [5, 10, 20, 50, 100]
     }
   },
   computed: {
-    rows () {
+    totalRows () {
       return this.items.length
     }
   }

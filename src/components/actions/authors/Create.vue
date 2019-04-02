@@ -9,26 +9,9 @@ const isPhone = (value) => value.match('^[0-9 +]*$') !== null
 export default {
   components: { AlertMessage },
   extends: PrototypeAction,
-  comments: {
-    AlertMessage
-  },
   data () {
     return {
       dataURL: 'authors',
-      breadcrumb: [
-        {
-          text: 'Home',
-          href: '#/'
-        },
-        {
-          text: 'Authors',
-          href: '#/authors/list'
-        },
-        {
-          text: 'Create',
-          active: true
-        }
-      ],
       form: {
         name: '',
         age: '',
