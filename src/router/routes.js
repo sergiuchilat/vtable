@@ -13,5 +13,9 @@ export default [
   {
     path: '/books/:action',
     component: resolve => require(['@/components/controllers/BooksController'], resolve)
+  },
+  {
+    path: '/authors/:action/:page',
+    component: resolve => require(['@/components/controllers/AuthorsController'], resolve)
   }
 ]

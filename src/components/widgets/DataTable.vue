@@ -46,13 +46,24 @@ export default {
       sortBy: 'name',
       sortDesc: false,
       perPage: 5,
-      currentPage: 1,
-      perPageOptions: [5, 10, 20, 50, 100]
+      perPageOptions: [5, 10, 20, 50, 100],
+      currentPage: 1
     }
   },
   computed: {
     totalRows () {
       return this.items.length
+    },
+    currentRoute () {
+      return this.$route.params.page
+    }
+  },
+  watch: {
+    currentPage: function () {
+      this.$router.push(`/authors/list/${this.currentPage}`)
+    },
+    currentRoute: function () {
+      this.currentPage = this.currentRoute
     }
   }
 }
