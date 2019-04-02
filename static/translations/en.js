@@ -8,5 +8,8 @@ export default {
 
       }
     }
+  },
+  responseMessages: {
+    'E:SUCCESS:CREATE': 'Successfully added'
   }
 }

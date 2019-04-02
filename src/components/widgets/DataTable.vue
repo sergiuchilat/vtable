@@ -1,7 +1,6 @@
 <template>
   <div>
-    <div v-if="!fetchError"><b-table striped hover :items="items" /></div>
-    <div v-else>{{fetchError}}</div>
+    <b-table striped hover :items="items" />
   </div>
 </template>
 
@@ -13,7 +12,7 @@ export default {
       type: Array,
       required: true
     },
-    fetchError: {
+    responseError: {
       type: String,
       required: false
     }

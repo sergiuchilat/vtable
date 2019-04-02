@@ -16,7 +16,6 @@ let store = new Vuex.Store({
   },
   mutations: {
     setData (state, object) {
-      // console.log(object.data)
       state.actionData[object.module] = object.data
     },
     setBreadcrumb (state, breadcrumb) {
@@ -40,41 +39,46 @@ let store = new Vuex.Store({
       setTimeout(function () {
         store.state.pageLoading = !store.state.dataLoaded
       }, 100)
-      return new Promise(resolve => {
+      return new Promise((resolve, reject) => {
         fetch(process.env.API_URL + payload.dataURL, {
           headers: {'Content-Type': 'application/json; charset=utf-8'},
           method: 'POST',
           body: JSON.stringify(payload.data)
         })
           .then(response => {
-            setTimeout(() => {
-              store.state.dataLoaded = true
-              store.state.pageLoading = false
-              resolve(response.ok)
-            }, 1000)
+            store.state.pageLoading = false
+            resolve(response.ok)
+          })
+          .catch(err => {
+            console.log('Load error' + err)
+            store.state.pageLoading = false
+            reject(err)
           })
       })
     },
     fetchData (context, module) {
-      // process.env.API_URL + module
-      store.state.dataLoaded = false
-      setTimeout(function () {
-        store.state.pageLoading = !store.state.dataLoaded
-      }, 100)
+      return new Promise((resolve, reject) => {
+        // process.env.API_URL + module
+        store.state.dataLoaded = false
+        setTimeout(function () {
+          store.state.pageLoading = !store.state.dataLoaded
+        }, 100)
 
-      context.commit('setData', {'data': [], 'module': module})
-      fetch(process.env.API_URL + module).then(response => {
-        return response.json()
-      }).then(data => {
-        store.state.dataLoaded = true
-        store.state.pageLoading = false
-        console.log('>>', data, '<<')
-        context.commit('setData', {'data': {items: data, fetchError: ''}, 'module': module})
-      }).catch(err => {
-        console.log('Load error' + err)
-        store.state.dataLoaded = true
-        store.state.pageLoading = false
-        context.commit('setData', {'data': {items: [], fetchError: 'FETCH_FAILED'}, 'module': module})
+        context.commit('setData', {'data': [], 'module': module})
+        fetch(process.env.API_URL + module).then(response => {
+          return response.json()
+        }).then(data => {
+          store.state.dataLoaded = true
+          store.state.pageLoading = false
+          context.commit('setData', {'data': data, 'module': module})
+          resolve('SUCCESS')
+        }).catch(err => {
+          console.log('Load error' + err)
+          store.state.dataLoaded = true
+          store.state.pageLoading = false
+          context.commit('setData', {'data': [], 'module': module})
+          reject(err)
+        })
       })
     }
   }

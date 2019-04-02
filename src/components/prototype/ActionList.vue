@@ -17,18 +17,21 @@ export default {
       (params.breadcrumb) && this.loadBreadcrumbs()
     },
     loadData (dataURL) {
-      this.$store.dispatch('fetchData', dataURL).then(() => {
-      })
+      this.$store.dispatch('fetchData', dataURL)
+        .then(() => {
+        })
+        .catch(() => {
+          this.resultStatus = {
+            label: 'E:SERVER_ERROR',
+            class: 'danger'
+          }
+        })
     }
   },
   computed: {
     items () {
       let data = this.$store.getters.getActionData(this.dataURL)
-      return data.items || []
-    },
-    fetchError () {
-      let data = this.$store.getters.getActionData(this.dataURL)
-      return data.fetchError || ''
+      return data || []
     }
   },
   mounted () {

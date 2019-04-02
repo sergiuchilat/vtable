@@ -1,12 +1,16 @@
-{"books" : [{
+{
+  "books": [
+    {
       "id": 1,
       "name": "Amintiri don copilarie",
       "author": "Ion Creanga"
-    },{
+    },
+    {
       "id": 1,
       "name": "Poezii",
       "author": "Mihai Eminescu"
-    },{
+    },
+    {
       "id": 1,
       "name": "Carte",
       "author": "Alecu Russo"
@@ -48,6 +52,96 @@
       "age": "23",
       "phone": "+37361072897",
       "id": 6
+    },
+    {
+      "name": "Alecu Russo",
+      "age": "45",
+      "phone": "+37360333284",
+      "id": 7
+    },
+    {
+      "name": "rewr234324",
+      "age": "23434324",
+      "phone": "+43534543265",
+      "id": 8
+    },
+    {
+      "name": "1",
+      "age": "1",
+      "phone": "+1",
+      "id": 9
+    },
+    {
+      "name": "1",
+      "age": "1",
+      "phone": "+",
+      "id": 10
+    },
+    {
+      "name": "1",
+      "age": "1",
+      "phone": "+1",
+      "id": 11
+    },
+    {
+      "name": "1",
+      "age": "1",
+      "phone": "+1",
+      "id": 12
+    },
+    {
+      "name": "1",
+      "age": "1",
+      "phone": "+1",
+      "id": 13
+    },
+    {
+      "name": "1",
+      "age": "1",
+      "phone": "+1",
+      "id": 14
+    },
+    {
+      "name": "1",
+      "age": "1",
+      "phone": "+",
+      "id": 15
+    },
+    {
+      "name": "1",
+      "age": "1",
+      "phone": "+",
+      "id": 16
+    },
+    {
+      "name": "1",
+      "age": "1",
+      "phone": "+",
+      "id": 17
+    },
+    {
+      "name": "1",
+      "age": "1",
+      "phone": "+",
+      "id": 18
+    },
+    {
+      "name": "1",
+      "age": "1",
+      "phone": "+",
+      "id": 19
+    },
+    {
+      "name": "1",
+      "age": "1",
+      "phone": "+",
+      "id": 20
+    },
+    {
+      "name": "1",
+      "age": "1",
+      "phone": "+",
+      "id": 21
     }
   ]
 }

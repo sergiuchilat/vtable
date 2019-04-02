@@ -1,6 +1,7 @@
 <template>
   <div>
-    <Table :items="items" :fetchError="fetchError"></Table>
+    <b-alert show :variant="resultStatus.class" v-if="resultStatus.label!==''">{{resultStatus.label}}</b-alert>
+    <Table v-else :items="items"></Table>
   </div>
 </template>
 
