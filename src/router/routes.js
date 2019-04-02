@@ -7,15 +7,15 @@ export default [
     component: Main
   },
   {
+    path: '/authors/:action/:page',
+    component: resolve => require(['@/components/controllers/AuthorsController'], resolve)
+  },
+  {
     path: '/authors/:action',
     component: resolve => require(['@/components/controllers/AuthorsController'], resolve)
   },
   {
     path: '/books/:action',
     component: resolve => require(['@/components/controllers/BooksController'], resolve)
-  },
-  {
-    path: '/authors/:action/:page',
-    component: resolve => require(['@/components/controllers/AuthorsController'], resolve)
   }
 ]
