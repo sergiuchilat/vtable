@@ -75,6 +75,7 @@ export default {
   watch: {
     perPage () {
       this.currentPage = 1
+      this.$router.push('/' + this.moduleName + '/' + this.actionName + '/1')
     }
   },
   created () {
