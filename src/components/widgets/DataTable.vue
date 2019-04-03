@@ -25,6 +25,14 @@
       :sort-by.sync="sortBy"
       :sort-desc.sync="sortDesc"
       id="vDataTable"/>
+    <b-pagination-nav v-if="perPage >= 50"
+      :number-of-pages="totalPages || 1"
+      :base-url="baseURL"
+      aria-controls="vDataTable"
+      :total-rows="totalRows"
+      :per-page="perPage"
+      v-model="currentPage"
+    ></b-pagination-nav>
   </div>
 </template>
 
