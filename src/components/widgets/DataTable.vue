@@ -2,7 +2,7 @@
   <div>
     <b-pagination-nav
       :number-of-pages="totalPages || 1"
-      base-url="#/authors/list/"
+      :base-url="baseURL"
       aria-controls="vDataTable"
       :total-rows="totalRows"
       :per-page="perPage"
@@ -42,6 +42,14 @@ export default {
     responseError: {
       type: String,
       required: false
+    },
+    moduleName: {
+      required: false,
+      type: String
+    },
+    actionName: {
+      required: false,
+      type: String
     }
   },
   data () {
@@ -59,6 +67,14 @@ export default {
     },
     totalPages () {
       return Math.ceil(this.totalRows / this.perPage)
+    },
+    baseURL () {
+      return '#/' + this.moduleName + '/' + this.actionName + '/'
+    }
+  },
+  watch: {
+    perPage () {
+      this.currentPage = 1
     }
   },
   created () {
