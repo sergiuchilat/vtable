@@ -1,6 +1,7 @@
 <template>
   <div>
     <b-pagination-nav
+      v-if="totalRows"
       :number-of-pages="totalPages || 1"
       :base-url="baseURL"
       aria-controls="vDataTable"

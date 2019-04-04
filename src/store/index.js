@@ -1,8 +1,9 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-
+import axios from 'axios'
+import VueAxios from 'vue-axios'
 Vue.use(Vuex)
-
+Vue.use(VueAxios, axios)
 let store = new Vuex.Store({
   state: {
     dataLoaded: false,
@@ -57,29 +58,23 @@ let store = new Vuex.Store({
       })
     },
     fetchData (context, module) {
-      return new Promise((resolve, reject) => {
-        // process.env.API_URL + module
-        store.state.dataLoaded = false
-        setTimeout(function () {
-          store.state.pageLoading = !store.state.dataLoaded
-        }, 100)
-
-        context.commit('setData', {'data': [], 'module': module})
-        fetch(process.env.API_URL + module).then(response => {
-          return response.json()
-        }).then(data => {
+      store.state.dataLoaded = false
+      setTimeout(function () {
+        store.state.pageLoading = !store.state.dataLoaded
+      }, 100)
+      context.commit('setData', {'data': [], 'module': module})
+      axios.get(process.env.API_URL + module)
+        .then(response => {
+          const data = response.data
           store.state.dataLoaded = true
           store.state.pageLoading = false
           context.commit('setData', {'data': data, 'module': module})
-          resolve('SUCCESS')
         }).catch(err => {
           console.log('Load error' + err)
           store.state.dataLoaded = true
           store.state.pageLoading = false
           context.commit('setData', {'data': [], 'module': module})
-          reject(err)
         })
-      })
     }
   }
 })
