@@ -16,6 +16,22 @@ export default {
         name: '',
         age: '',
         phone: ''
+      },
+      rules: {
+        phone: [
+          () => this.$v.form.phone.required || 'This field is required',
+          () => this.$v.form.phone.minLength || 'Min length 11 characters',
+          () => this.$v.form.phone.maxLength || 'Max length 11 characters'
+        ],
+        age: [
+          () => this.$v.form.age.required || 'This field is required',
+          () => this.$v.form.age.minLength || 'Min length 1 characters',
+          () => this.$v.form.age.numeric || 'Only number'
+        ],
+        name: [
+          () => this.$v.form.name.required || 'This field is required',
+          () => this.$v.form.name.minLength || 'Min length 3 characters'
+        ]
       }
     }
   },
@@ -23,7 +39,7 @@ export default {
     form: {
       name: {
         required,
-        minLength: minLength(1)
+        minLength: minLength(3)
       },
       age: {
         required,
@@ -32,8 +48,8 @@ export default {
       },
       phone: {
         required,
-        minLength: minLength(1),
-        maxLength: maxLength(12),
+        minLength: minLength(11),
+        maxLength: maxLength(11),
         isPhone
       }
     }
@@ -49,95 +65,63 @@ export default {
 </script>
 
 <template>
- <div class="row justify-content-center">
-   <form v-if="showForm" class="col-5">
-     <div class="form-group">
-       <div class="text-center">
-         <label for='name'>Author name:</label>
-         <input
-             placeholder="Enter name"
+  <v-layout justify-center>
+     <v-flex v-if="showForm" xs3>
+         <v-text-field
+              label="Enter Name"
              type="text"
              id="name"
-             class="form-control"
              :class="{ 'is-invalid' : $v.form.name.$error }"
              @blur="$v.form.name.$touch()"
              v-model.trim="$v.form.name.$model"
-         >
-         <div class="invalid-feedback" v-if="!$v.form.name.minLength">Alert! Min length</div>
-         <div class="invalid-feedback" v-if="!$v.form.name.required">Alert! Required</div>
-       </div>
-     </div>
-       <div class="form-group">
-         <div class="text-center pt-3">
-           <label for="age">Author age:</label>
-           <input
-               placeholder="Enter age"
+              :rules="rules.name"
+         ></v-text-field>
+           <v-text-field
+               label = "Enter age"
                type="text"
                id="age"
-               class="form-control"
                :class="{ 'is-invalid' : $v.form.age.$error }"
                @blur="$v.form.age.$touch()"
                v-model.trim="$v.form.age.$model"
-           >
-           <div class="invalid-feedback" v-if="!$v.form.age.numeric">Alert! Integer</div>
-           <div class="invalid-feedback" v-if="!$v.form.age.minLength">Alert! Min length</div>
-           <div class="invalid-feedback" v-if="!$v.form.age.required">Alert! Required</div>
-         </div>
-       </div>
-       <div class="form-group">
-         <div class="text-center pt-3">
-           <label for="phone">Author phone:</label>
-           <input
-               placeholder="Enter phone"
+               :rules="rules.age"
+           ></v-text-field>
+           <v-text-field
+              label = "Enter phone"
                type="text"
                id="phone"
                @click="AddPlus"
-               class="form-control"
                :class="{ 'is-invalid' : $v.form.phone.$error }"
                @blur="$v.form.phone.$touch()"
                v-model.trim="$v.form.phone.$model"
-           >
-           <div class="invalid-feedback" v-if="!$v.form.phone.minLength">Alert! Min length</div>
-           <div class="invalid-feedback" v-if="!$v.form.phone.maxLength">Alert! Max length</div>
-           <div class="invalid-feedback" v-if="!$v.form.phone.required">Alert! Required</div>
-           <div class="invalid-feedback" v-if="!$v.form.phone.isPhone">Alert! integer</div>
-         </div>
-       </div>
-       <b-button
+              :rules="rules.phone"
+           ></v-text-field>
+       <v-btn
            v-if="!$v.form.name.$invalid && !$v.form.age.$invalid && !$v.form.phone.$invalid "
-           class="mt-4 col-3"
-           variant="success"
+           color="success"
            @click="onSubmit"
+           block
        >
          Submit
-       </b-button>
-       <b-button
+       </v-btn>
+       <v-btn
            v-else
-           class="mt-4 col-3"
-           variant="success"
+           color="success"
            disabled
+           block
        >
          Submit
-       </b-button>
-   </form>
+       </v-btn>
+     </v-flex>
    <AlertMessage :label="resultStatus.label" :alertClass="resultStatus.class" v-if="resultStatus.label!==''"/>
    <div class="col-12" v-if="resultStatus.label==='success.create' && !showForm">
-     <b-button
-       class="mt-4 col-3"
-       variant="success"
+     <v-btn
+       color="success"
        @click="resetForm"
      >
        Add more
-     </b-button>
-     <b-button
-       class="mt-4 col-3"
-       variant="warning"
-       href="#/authors/list"
-     >
-       List
-     </b-button>
+     </v-btn>
    </div>
- </div>
+  </v-layout>
 </template>
 
 <style>
@@ -146,6 +130,6 @@ export default {
     }
 
   .success{
-    font-size: 40px;
+    font-size: 18px;
   }
 </style>

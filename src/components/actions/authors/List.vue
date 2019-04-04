@@ -1,15 +1,9 @@
 <template>
   <div>
-    <b-button href="#/authors/create" variant="success">New</b-button>
-    <b-alert show :variant="resultStatus.class" v-if="resultStatus.label!==''">{{resultStatus.label}}</b-alert>
-    <Table v-else
+<!--    <b-alert show :variant="resultStatus.class" v-if="resultStatus.label!==''">{{resultStatus.label}}</b-alert>-->
+    <DataTable
            :items="items"
-           :fields="tableFields"
-           :sortBy="sortBy"
-           :sortDesc="sortDesc"
-           :moduleName="moduleName"
-           :actionName="actionName"
-    ></Table>
+    ></DataTable>
   </div>
 </template>
 

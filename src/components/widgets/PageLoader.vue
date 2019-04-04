@@ -3,7 +3,12 @@
       <transition name="fade">
           <div v-if="isLoading" class="loadingOverlay">
               <div class="bSpiner" >
-                  <b-spinner  type="grow" label="Small Spinner"/>
+                <v-progress-circular
+                  :width="3"
+                  :size="100"
+                  color="black"
+                  indeterminate
+                ></v-progress-circular>
               </div>
           </div>
       </transition>
@@ -43,6 +48,10 @@ export default {
   }
   .fade-enter, .fade-leave-to {
       opacity: 0;
+  }
+
+  .v-progress-circular {
+    margin: 1rem;
   }
 
 </style>

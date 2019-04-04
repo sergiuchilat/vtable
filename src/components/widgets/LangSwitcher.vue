@@ -1,6 +1,14 @@
 <template>
     <div>
-      <b-form-select v-model="selected" :options="options"/>
+      <v-btn icon>
+        <img @click="changeLang('ru')" src="../../assets/flags/russia.svg">
+      </v-btn>
+      <v-btn icon>
+        <img @click="changeLang('ro')" src="../../assets/flags/romania.svg">
+      </v-btn>
+      <v-btn icon>
+        <img @click="changeLang('en')" src="../../assets/flags/united-kingdom.svg">
+      </v-btn>
     </div>
 </template>
 
@@ -9,29 +17,17 @@ import i18n from '@/plugins/i18n'
 export default {
   name: 'LangSwitcher',
   props: ['updateRouter'],
-  data () {
-    return {
-      selected: i18n.locale,
-      options: [
-        {value: 'ru', text: 'Русский'},
-        {value: 'ro', text: 'Română'},
-        {value: 'en', text: 'English'}
-      ]
-    }
-  },
   methods: {
     loadLanguage (lang) {
       import('../../../static/translations/' + lang).then(messages => {
         i18n.setLocaleMessage(lang, messages.default)
       })
-    }
-  },
-  watch: {
-    selected: function (locale) {
-      i18n.locale = locale
-      localStorage.appLang = locale
-      this.loadLanguage(locale)
-      this.updateRouter()
+    },
+    changeLang (value) {
+      console.log(value)
+      i18n.locale = value
+      localStorage.appLang = value
+      this.loadLanguage(value)
     }
   },
   created () {
@@ -41,5 +37,8 @@ export default {
 </script>
 
 <style scoped>
-
+img {
+  height: 30px;
+  cursor: pointer;
+}
 </style>

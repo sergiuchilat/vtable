@@ -3,13 +3,13 @@
 </template>
 
 <script>
-import Table from '@/components/widgets/DataTable'
+import DataTable from '@/components/widgets/DataTable'
 import Action from '@/components/prototype/Action'
 export default {
   name: 'ActionList',
   extends: Action,
   components: {
-    Table
+    DataTable
   },
   methods: {
     initAction (params) {

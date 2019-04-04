@@ -1,15 +1,15 @@
 <template>
   <div>
-    <b-button href="#/books/create" variant="success">New</b-button>
-    <b-alert show :variant="resultStatus.class" v-if="resultStatus.label!==''">{{resultStatus.label}}</b-alert>
-    <Table v-else
-           :items="items"
-           :fields="tableFields"
-           :sortBy="sortBy"
-           :sortDesc="sortDesc"
-           :moduleName="moduleName"
-           :actionName="actionName"
-    ></Table>
+<!--    <b-button href="#/books/create" variant="success">New</b-button>-->
+<!--    <b-alert show :variant="resultStatus.class" v-if="resultStatus.label!==''">{{resultStatus.label}}</b-alert>-->
+<!--    <Table-->
+<!--           :items="items"-->
+<!--           :fields="tableFields"-->
+<!--           :sortBy="sortBy"-->
+<!--           :sortDesc="sortDesc"-->
+<!--           :moduleName="moduleName"-->
+<!--           :actionName="actionName"-->
+<!--    ></Table>-->
   </div>
 </template>
 

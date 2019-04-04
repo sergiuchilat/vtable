@@ -1,35 +1,29 @@
 <template>
     <div id="app">
+      <v-app>
         <page-loader />
-        <lang-switcher :updateRouter = "updateRouter" />
         <Menu />
-        <b-breadcrumb :key = "upBreadCrumb" :items="breadcrumbItems" />
+        <Breadcrumb />
         <router-view :key = "upRouter" />
+        </v-app>
     </div>
 </template>
 
 <script>
 import Menu from '@/components/widgets/Menu'
 import Breadcrumb from '@/components/widgets/Breadcrumb'
-import LangSwitcher from '@/components/widgets/LangSwitcher'
 import PageLoader from '@/components/widgets/PageLoader'
 export default {
   name: 'App',
   components: {
     Menu,
     Breadcrumb,
-    LangSwitcher,
     PageLoader
   },
   data () {
     return {
       upBreadCrumb: 1,
       upRouter: 3
-    }
-  },
-  computed: {
-    breadcrumbItems () {
-      return this.$store.getters.getBreadcrumb
     }
   },
   methods: {
@@ -46,9 +40,6 @@ export default {
 <style>
     #app {
         font-family: 'Avenir', Helvetica, Arial, sans-serif;
-        -webkit-font-smoothing: antialiased;
-        -moz-osx-font-smoothing: grayscale;
-        text-align: center;
         color: #2c3e50;
     }
 </style>
